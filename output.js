@@ -374,6 +374,7 @@ var PS = {};
   };
   exports["fillPath"] = fillPath;
   exports["getCanvasElementById"] = getCanvasElementById;
+  exports["beginPath"] = $foreign.beginPath;
   exports["closePath"] = $foreign.closePath;
   exports["getCanvasHeight"] = $foreign.getCanvasHeight;
   exports["getCanvasWidth"] = $foreign.getCanvasWidth;
@@ -400,8 +401,8 @@ var PS = {};
   var main = Data_Functor["void"](Control_Monad_Eff.functorEff)(function __do() {
       var v = Graphics_Canvas.getCanvasElementById("canvas")();
       var __unused = function (dictPartial1) {
-          return function ($dollar12) {
-              return $dollar12;
+          return function ($dollar13) {
+              return $dollar13;
           };
       };
       return __unused()((function () {
@@ -415,9 +416,10 @@ var PS = {};
                   var v6 = Graphics_Canvas.setFillStyle("#0099FF")(v1)();
                   var v7 = Graphics_Canvas.setStrokeStyle("#0099FF")(v1)();
                   return Graphics_Canvas.fillPath(v1)(function __do() {
-                      var v8 = Graphics_Canvas.moveTo(v1)(0.0)(0.0)();
-                      var v9 = Graphics_Canvas.lineTo(v1)(200.0)(100.0)();
-                      var v10 = Graphics_Canvas.stroke(v1)();
+                      var v8 = Graphics_Canvas.beginPath(v1)();
+                      var v9 = Graphics_Canvas.moveTo(v1)(9.0)(8.0)();
+                      var v10 = Graphics_Canvas.lineTo(v1)(900.0)(100.0)();
+                      var v11 = Graphics_Canvas.stroke(v1)();
                       return Graphics_Canvas.closePath(v1)();
                   })();
               };

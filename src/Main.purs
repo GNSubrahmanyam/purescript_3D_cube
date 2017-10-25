@@ -4,7 +4,7 @@ import Prelude
 
 import Control.Monad.Eff (Eff)
 import Data.Maybe (Maybe(..))
-import Graphics.Canvas (CANVAS, arc, closePath, fillPath, getCanvasElementById, getContext2D, stroke, lineTo, moveTo, rect, setFillStyle, setStrokeStyle, setCanvasWidth, setCanvasHeight, getCanvasWidth, getCanvasHeight)
+import Graphics.Canvas (CANVAS, arc, closePath, beginPath, fillPath, getCanvasElementById, getContext2D, stroke, lineTo, moveTo, rect, setFillStyle, setStrokeStyle, setCanvasWidth, setCanvasHeight, getCanvasWidth, getCanvasHeight)
 import Math
 import Partial.Unsafe (unsafePartial)
 
@@ -24,7 +24,8 @@ main = void $ unsafePartial do
 
 
   fillPath ctx $ do
-    _ <- moveTo ctx 0.0 0.0
-    _ <- lineTo ctx 200.0 100.0
+    _ <- beginPath ctx
+    _ <- moveTo ctx 9.0 8.0
+    _ <- lineTo ctx 900.0 100.0
     _ <- stroke ctx
     closePath ctx
