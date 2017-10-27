@@ -14,7 +14,9 @@
     "purescript-partial": "^1.2.1",
     "purescript-signal": "^9.0.0",
     "purescript-random": "^3.0.0",
-    "purescript-drawing": "^3.0.0"
+    "purescript-drawing": "^3.0.0",
+    "purescript-decimals": "^3.1.0",
+    "purescript-integers": "^3.1.0"
   },
   "devDependencies": {
     "purescript-psci-support": "^3.0.0"
