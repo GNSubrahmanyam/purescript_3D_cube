@@ -10,6 +10,7 @@ import Prelude
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Class (liftEff)
 import Control.Monad.Eff.Console (log, CONSOLE, logShow)
+import Control.Monad.Eff.Ref (REF, newRef, readRef, writeRef, modifyRef, Ref)
 import Data.Foldable (for_)
 import Data.Int (round, toNumber, fromNumber, ceil, floor)
 import Graphics.Canvas (CANVAS, Context2D, Rectangle, arc, rotate, translate, closePath, beginPath, fillPath, getCanvasElementById, getContext2D, stroke, lineTo, moveTo, rect, setFillStyle, setStrokeStyle, setCanvasWidth, setCanvasHeight, getCanvasWidth, getCanvasHeight, clearRect)
@@ -76,8 +77,9 @@ rotateY theta = do
       let x = toNumber $ fromMaybe 0 (vertice !! 0)
       let z = toNumber $ fromMaybe 2 (vertice !! 2)
       -- logShow $ round $ x * cosa - z * sina
-      _ <- updateAt 0  (round $ x * cosa - z * sina) vertice
-      updateAt 2  (round $ z * cosa + x * sina) vertice
+      -- _ <- updateAt 0  (round $ x * cosa - z * sina) vertice
+      -- updateAt 2  (round $ z * cosa + x * sina) vertice
+      [(x * cosa - z * sina), toNumber $ fromMaybe 1 (vertice !! 1), (z * cosa + x * sina)]
 
 
 rotateZ theta = do
@@ -88,8 +90,9 @@ rotateZ theta = do
       let x = toNumber $ fromMaybe 0 (vertice !! 0)
       let y = toNumber $ fromMaybe 1 (vertice !! 1)
       -- logShow $ round $ x * cosa - y * sina
-      _ <- updateAt 0  (round $ x * cosa - y * sina) vertice
-      updateAt 1  (round $ y * cosa + x * sina) vertice
+      -- _ <- updateAt 0  (round $ x * cosa - y * sina) vertice
+      -- updateAt 1  (round $ y * cosa + x * sina) vertice
+      [(x * cosa - y * sina), (y * cosa + x * sina), toNumber $ fromMaybe 2 (vertice !! 2)]
 
 render count ctx = void do
     let scaleX = sin (toNumber count * pi / 4.0) + 1.5
