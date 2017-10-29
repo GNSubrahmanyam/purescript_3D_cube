@@ -79,7 +79,8 @@ rotateY theta = do
       -- logShow $ round $ x * cosa - z * sina
       -- _ <- updateAt 0  (round $ x * cosa - z * sina) vertice
       -- updateAt 2  (round $ z * cosa + x * sina) vertice
-      [(x * cosa - z * sina), toNumber $ fromMaybe 1 (vertice !! 1), (z * cosa + x * sina)]
+      logShow [(x * cosa - z * sina), toNumber $ fromMaybe 1 (vertice !! 1), (z * cosa + x * sina)]
+      pure $ [(x * cosa - z * sina), toNumber $ fromMaybe 1 (vertice !! 1), (z * cosa + x * sina)]
 
 
 rotateZ theta = do
@@ -92,7 +93,8 @@ rotateZ theta = do
       -- logShow $ round $ x * cosa - y * sina
       -- _ <- updateAt 0  (round $ x * cosa - y * sina) vertice
       -- updateAt 1  (round $ y * cosa + x * sina) vertice
-      [(x * cosa - y * sina), (y * cosa + x * sina), toNumber $ fromMaybe 2 (vertice !! 2)]
+      logShow [(x * cosa - y * sina), (y * cosa + x * sina), toNumber $ fromMaybe 2 (vertice !! 2)]
+      pure $ [(x * cosa - y * sina), (y * cosa + x * sina), toNumber $ fromMaybe 2 (vertice !! 2)]
 
 render count ctx = void do
     let scaleX = sin (toNumber count * pi / 4.0) + 1.5
@@ -110,7 +112,7 @@ main = void $ unsafePartial do
   _ <- translate {translateX : 1260.0/2.0-150.0, translateY : 700.0/2.0-100.0 } ctx
   _ <- setStrokeStyle "#0099FF" ctx
 
-  _ <- pure $ rotateZ 60.0
-  _ <- pure $ rotateY 60.0
-  _ <- pure $ rotateZ 60.0
+  rotateZ 60.0
+  rotateY 60.0
+  rotateZ 60.0
   project ctx 1260.0 700.0
